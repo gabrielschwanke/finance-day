@@ -1,12 +1,21 @@
+import { useState } from 'react'
 import Header from './components/Header'
+import NavTabs from './components/NavTabs'
 
 function App() {
+  const [activeTab, setActiveTab] = useState('receitas')
+
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <Header />
-      <h1 className="text-3xl font-bold text-center py-10">
-        Finance Day 💰
-      </h1>
+      <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
+
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {activeTab === 'receitas'      && <p>Seção Receitas</p>}
+        {activeTab === 'orcamento'     && <p>Seção Orçamento</p>}
+        {activeTab === 'investimentos' && <p>Seção Investimentos</p>}
+        {activeTab === 'metas'         && <p>Seção Metas</p>}
+      </main>
     </div>
   )
 }
