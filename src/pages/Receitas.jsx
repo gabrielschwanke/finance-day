@@ -1,5 +1,6 @@
 import KpiCard from '../components/KpiCard'
 import QuickAdd from '../components/QuickAdd'
+import TransactionList from '../components/TransactionList'
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
 
@@ -42,6 +43,7 @@ function Receitas() {
           cor={saldo >= 0 ? 'text-emerald-400' : 'text-red-400'}
         />
       </div>
+      <TransactionList />
     </div>
   )
 }
