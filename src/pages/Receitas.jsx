@@ -1,4 +1,5 @@
 import KpiCard from '../components/KpiCard'
+import QuickAdd from '../components/QuickAdd'
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
 
@@ -20,6 +21,7 @@ function Receitas() {
 
   return (
     <div className="space-y-6">
+      <QuickAdd />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <KpiCard
           titulo="Receitas"
