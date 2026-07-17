@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import NavTabs from './components/NavTabs'
+import Receitas from './pages/Receitas'
 
 function App() {
   const [activeTab, setActiveTab] = useState('receitas')
@@ -11,7 +12,7 @@ function App() {
       <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="max-w-7xl mx-auto px-4 py-6">
-        {activeTab === 'receitas'      && <p>Seção Receitas</p>}
+        {activeTab === 'receitas'      && <Receitas />}
         {activeTab === 'orcamento'     && <p>Seção Orçamento</p>}
         {activeTab === 'investimentos' && <p>Seção Investimentos</p>}
         {activeTab === 'metas'         && <p>Seção Metas</p>}
