@@ -2,6 +2,7 @@ import KpiCard from '../components/KpiCard'
 import QuickAdd from '../components/QuickAdd'
 import TransactionList from '../components/TransactionList'
 import GraficoPizza from '../components/PieChart'
+import GraficoBarras from '../components/BarChart'
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
 
@@ -45,6 +46,7 @@ function Receitas() {
         />
       </div>
       <GraficoPizza />
+      <GraficoBarras />
       <TransactionList />
     </div>
   )
