@@ -4,6 +4,7 @@ import NavTabs from './components/NavTabs'
 import Receitas from './pages/Receitas'
 import Orcamento from './pages/Orcamento'
 import Investimentos from './pages/Investimentos'
+import Metas from './pages/Metas'
 
 function App() {
   const [activeTab, setActiveTab] = useState('receitas')
@@ -17,7 +18,7 @@ function App() {
         {activeTab === 'receitas'      && <Receitas />}
         {activeTab === 'orcamento'     && <Orcamento />}
         {activeTab === 'investimentos' && <Investimentos />}
-        {activeTab === 'metas'         && <p>Seção Metas</p>}
+        {activeTab === 'metas'         && <Metas />}
       </main>
     </div>
   )
