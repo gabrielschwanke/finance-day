@@ -3,6 +3,7 @@ import Header from './components/Header'
 import NavTabs from './components/NavTabs'
 import Receitas from './pages/Receitas'
 import Orcamento from './pages/Orcamento'
+import Investimentos from './pages/Investimentos'
 
 function App() {
   const [activeTab, setActiveTab] = useState('receitas')
@@ -15,7 +16,7 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 py-6">
         {activeTab === 'receitas'      && <Receitas />}
         {activeTab === 'orcamento'     && <Orcamento />}
-        {activeTab === 'investimentos' && <p>Seção Investimentos</p>}
+        {activeTab === 'investimentos' && <Investimentos />}
         {activeTab === 'metas'         && <p>Seção Metas</p>}
       </main>
     </div>
