@@ -47,7 +47,7 @@ function Receitas({ showToast }) {
       </div>
       <GraficoPizza />
       <GraficoBarras />
-      <TransactionList />
+      <TransactionList showToast={showToast} />
     </div>
   )
 }
