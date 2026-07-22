@@ -5,6 +5,7 @@ import Receitas from './pages/Receitas'
 import Orcamento from './pages/Orcamento'
 import Investimentos from './pages/Investimentos'
 import Metas from './pages/Metas'
+import Footer from './components/Footer'
 
 function App() {
   const [activeTab, setActiveTab] = useState('receitas')
@@ -20,6 +21,7 @@ function App() {
         {activeTab === 'investimentos' && <Investimentos />}
         {activeTab === 'metas'         && <Metas />}
       </main>
+      <Footer />
     </div>
   )
 }
