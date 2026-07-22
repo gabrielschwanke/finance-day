@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useData } from '../context/DataContext'
 import { uid } from '../utils/helpers'
 
-function QuickAdd() {
+function QuickAdd({ showToast }) {
   const { data, updateData } = useData()
   const [tipo, setTipo] = useState('despesa')
   const [valor, setValor] = useState('')
@@ -29,6 +29,7 @@ function QuickAdd() {
 
     setValor('')
     setDescricao('')
+    showToast('Transação adicionada!') 
   }
 
   return (

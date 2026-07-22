@@ -6,7 +6,7 @@ import GraficoBarras from '../components/BarChart'
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
 
-function Receitas() {
+function Receitas({ showToast }) {
   const { data } = useData()
 
   const receitas = data.transacoes
@@ -24,7 +24,7 @@ function Receitas() {
 
   return (
     <div className="space-y-6">
-      <QuickAdd />
+      <QuickAdd showToast={showToast} />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <KpiCard
           titulo="Receitas"
