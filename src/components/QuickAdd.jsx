@@ -1,17 +1,18 @@
-import { useState } from 'react'
-import { useData } from '../context/DataContext'
-import { uid } from '../utils/helpers'
+import { useState } from "react";
+import { useData } from "../context/DataContext";
+import { uid } from "../utils/helpers";
+import CustomSelect from "./CustomSelect";
 
 function QuickAdd({ showToast }) {
-  const { data, updateData } = useData()
-  const [tipo, setTipo] = useState('despesa')
-  const [valor, setValor] = useState('')
-  const [descricao, setDescricao] = useState('')
-  const [categoriaId, setCategoriaId] = useState('')
-  const [data_,  setData] = useState(new Date().toISOString().slice(0, 10))
+  const { data, updateData } = useData();
+  const [tipo, setTipo] = useState("despesa");
+  const [valor, setValor] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [categoriaId, setCategoriaId] = useState("");
+  const [data_, setData] = useState(new Date().toISOString().slice(0, 10));
 
   function handleSubmit() {
-    if (!valor || !descricao || !categoriaId || !data_) return
+    if (!valor || !descricao || !categoriaId || !data_) return;
 
     const nova = {
       id: uid(),
@@ -20,39 +21,38 @@ function QuickAdd({ showToast }) {
       valor: parseFloat(valor),
       categoriaId,
       data: data_,
-    }
+    };
 
     updateData({
       ...data,
       transacoes: [...data.transacoes, nova],
-    })
+    });
 
-    setValor('')
-    setDescricao('')
-    showToast('Transação adicionada!') 
+    setValor("");
+    setDescricao("");
+    showToast("Transação adicionada!");
   }
 
   return (
     <div className="bg-gray-800 rounded-2xl p-4 border border-gray-700/50 space-y-3">
-      
       {/* Tipo toggle */}
       <div className="flex gap-2">
         <button
-          onClick={() => setTipo('despesa')}
+          onClick={() => setTipo("despesa")}
           className={`flex-1 py-2 rounded-xl text-sm font-medium transition-colors ${
-            tipo === 'despesa'
-              ? 'bg-red-500/20 text-red-400 border border-red-500/40'
-              : 'text-gray-400 border border-gray-700 hover:border-gray-500'
+            tipo === "despesa"
+              ? "bg-red-500/20 text-red-400 border border-red-500/40"
+              : "text-gray-400 border border-gray-700 hover:border-gray-500"
           }`}
         >
           Despesa
         </button>
         <button
-          onClick={() => setTipo('receita')}
+          onClick={() => setTipo("receita")}
           className={`flex-1 py-2 rounded-xl text-sm font-medium transition-colors ${
-            tipo === 'receita'
-              ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-              : 'text-gray-400 border border-gray-700 hover:border-gray-500'
+            tipo === "receita"
+              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
+              : "text-gray-400 border border-gray-700 hover:border-gray-500"
           }`}
         >
           Receita
@@ -65,30 +65,28 @@ function QuickAdd({ showToast }) {
           type="number"
           placeholder="Valor"
           value={valor}
-          onChange={e => setValor(e.target.value)}
+          onChange={(e) => setValor(e.target.value)}
           className="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-500 w-32 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
           placeholder="Descrição"
           value={descricao}
-          onChange={e => setDescricao(e.target.value)}
+          onChange={(e) => setDescricao(e.target.value)}
           className="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-500 flex-1 min-w-32 focus:outline-none focus:border-blue-500"
         />
-        <select
+        <CustomSelect
           value={categoriaId}
-          onChange={e => setCategoriaId(e.target.value)}
-          className="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white flex-1 min-w-32 focus:outline-none focus:border-blue-500"
-        >
-          <option value="">Categoria...</option>
-          {data.categorias.map(c => (
-            <option key={c.id} value={c.id}>{c.nome}</option>
-          ))}
-        </select>
+          onChange={(v) => setCategoriaId(v)}
+          options={[
+            { value: "", label: "Categoria..." },
+            ...data.categorias.map((c) => ({ value: c.id, label: c.nome })),
+          ]}
+        />
         <input
           type="date"
           value={data_}
-          onChange={e => setData(e.target.value)}
+          onChange={(e) => setData(e.target.value)}
           className="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
         />
         <button
@@ -98,9 +96,8 @@ function QuickAdd({ showToast }) {
           Adicionar
         </button>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default QuickAdd
+export default QuickAdd;
