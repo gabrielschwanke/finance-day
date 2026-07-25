@@ -2,8 +2,11 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recha
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
 
-function GraficoPizza() {
+function GraficoPizza({ mes, ano }) {
   const { data } = useData()
+
+  const mesStr = String(mes).padStart(2, '0')
+  const prefixo = `${ano}-${mesStr}`
 
   const gastosPorCategoria = data.categorias.map(cat => {
     const total = data.transacoes
