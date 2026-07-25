@@ -1,22 +1,33 @@
+import { useState } from 'react'
 import { useData } from '../context/DataContext'
 import { fmtBRL } from '../utils/formatters'
+import MonthFilter from '../components/MonthFilter'
 
 function Orcamento() {
   const { data } = useData()
+  const hoje = new Date()
+  const [mes, setMes] = useState(hoje.getMonth() + 1)
+  const [ano, setAno] = useState(hoje.getFullYear())
 
-  const receitas = data.transacoes
+ const mesStr = String(mes).padStart(2, '0')
+  const prefixo = `${ano}-${mesStr}`
+
+  const transacoesFiltradas = data.transacoes.filter(t =>
+    t.data.startsWith(prefixo)
+  )
+
+  const receitas = transacoesFiltradas
     .filter(t => t.tipo === 'receita')
     .reduce((s, t) => s + t.valor, 0)
 
-  const despesas = data.transacoes
+  const despesas = transacoesFiltradas
     .filter(t => t.tipo === 'despesa')
     .reduce((s, t) => s + t.valor, 0)
 
   const saldo = receitas - despesas
 
-  // Calcula gastos por bucket
   const buckets = { necessidades: 0, desejos: 0, investimentos: 0 }
-  data.transacoes
+  transacoesFiltradas
     .filter(t => t.tipo === 'despesa')
     .forEach(t => {
       const bucket = data.buckets[t.categoriaId]
@@ -39,6 +50,12 @@ function Orcamento() {
 
   return (
     <div className="space-y-6">
+
+      {/* Filtro de mês */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-base font-semibold text-white">Orçamento</h2>
+        <MonthFilter mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
+      </div>
 
       {/* Cards 50/30/20 */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -80,7 +97,7 @@ function Orcamento() {
         })}
       </div>
 
-      {/* Indicador de fechamento */}
+      {/* Fechamento do mês */}
       <div className="bg-gray-800 rounded-2xl p-5 border border-gray-700/50">
         <div className="flex items-center justify-between mb-4">
           <div>
