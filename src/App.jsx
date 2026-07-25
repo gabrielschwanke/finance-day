@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen">
-      <Header />
+      <Header showToast={showToast} />
       <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main className="max-w-7xl mx-auto px-4 py-6">
