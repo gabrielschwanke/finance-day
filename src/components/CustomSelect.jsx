@@ -4,7 +4,7 @@ function CustomSelect({ value, onChange, options }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  const selected = options.find((o) => Number(o.value) === Number(value));
+  const selected = options.find(o => String(o.value) === String(value))
 
   useEffect(() => {
     function handleClickOutside(e) {
