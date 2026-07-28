@@ -20,7 +20,7 @@ function App() {
 
       <main className="max-w-7xl mx-auto px-4 py-6">
         {activeTab === 'receitas'      && <Receitas showToast={showToast} />}
-        {activeTab === 'orcamento'     && <Orcamento />}
+        {activeTab === 'orcamento' && <Orcamento showToast={showToast} />}
         {activeTab === 'investimentos' && <Investimentos showToast={showToast} />}
         {activeTab === 'metas'         && <Metas showToast={showToast} />}
       </main>
