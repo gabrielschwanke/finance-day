@@ -71,9 +71,9 @@ function Orcamento({ showToast }) {
   return (
     <div className="space-y-6">
       {/* Filtro de mês */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <h2 className="text-base font-semibold text-white">Orçamento</h2>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setShowBuckets(true)}
             className="text-xs text-purple-400 hover:text-purple-300 border border-purple-500/40 hover:border-purple-400 px-3 py-1.5 rounded-lg transition-colors"
@@ -92,17 +92,17 @@ function Orcamento({ showToast }) {
       </div>
 
       {/* Cards 50/30/20 */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {itens.map((item) => (
           <div
             key={item.label}
-            className="bg-gray-800 rounded-2xl p-5 border border-gray-700/50 text-center"
+            className="bg-gray-800 rounded-2xl p-3 border border-gray-700/50 text-center"
           >
-            <p className="text-2xl font-black mb-1" style={{ color: item.cor }}>
+            <p className="text-xl font-black mb-1" style={{ color: item.cor }}>
               {item.sublabel}
             </p>
-            <p className="font-semibold text-white">{item.label}</p>
-            <p className="text-lg font-bold mt-2" style={{ color: item.cor }}>
+            <p className="font-semibold text-white text-xs">{item.label}</p>
+            <p className="text-sm font-bold mt-2" style={{ color: item.cor }}>
               {fmtBRL(item.limite)}
             </p>
           </div>
@@ -119,7 +119,7 @@ function Orcamento({ showToast }) {
             item.limite > 0
               ? Math.min((item.gasto / item.limite) * 100, 100)
               : 0;
-          const over = item.gasto > item.limite;  
+          const over = item.gasto > item.limite;
           return (
             <div key={item.label} className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -192,7 +192,7 @@ function Orcamento({ showToast }) {
           </span>
         </div>
       </div>
-         {showBuckets && (
+      {showBuckets && (
         <BucketsModal
           onClose={() => setShowBuckets(false)}
           showToast={showToast}
