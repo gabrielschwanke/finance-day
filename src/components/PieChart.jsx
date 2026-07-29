@@ -36,6 +36,7 @@ function GraficoPizza({ mes, ano }) {
             outerRadius={110}
             paddingAngle={3}
             dataKey="value"
+            strokeWidth={0}
           >
             {gastosPorCategoria.map((entry, index) => (
               <Cell key={index} fill={entry.cor} />
