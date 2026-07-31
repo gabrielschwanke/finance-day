@@ -5,11 +5,12 @@
 ## 🚀 Live Demo
 https://finance-day.vercel.app/
 
+
 ## 📸 Screenshots
 
-![Dashboard](./screenshots/dashboard.png)
-![Mobile](./screenshots/mobile.jpeg)
-![Orcamento](./screenshots/orcamento.png)
+<img src="/screeshots/dashboard.png" alt="Dashboard" width="800" />
+<img src="/screeshots/mobile.jpeg" alt="Mobile" width="300" />
+<img src="/screeshots/orcamento.png" alt="Orcamento" width="800" />
 
 ## ✨ Features
 
