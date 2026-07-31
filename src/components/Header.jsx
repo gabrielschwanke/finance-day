@@ -1,34 +1,48 @@
-import logo from '../assets/img/logo-finance.png'
-import { useData } from '../context/DataContext'
+import { useState, useEffect } from "react";
+import logo from "../assets/img/logo-finance.png";
+import { useData } from "../context/DataContext";
 
 function Header({ showToast }) {
-  const { data, updateData, DEFAULT_DATA } = useData()
-  const mes = new Date().toLocaleString('pt-BR', { month: 'long', year: 'numeric' })
+  const { data, updateData, DEFAULT_DATA } = useData();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setScrolled(window.scrollY > 20);
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   function handleExport() {
-    const json = JSON.stringify(data, null, 2)
-    const blob = new Blob([json], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `financeday-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
-    showToast('Dados exportados!')
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `financeday-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast("Dados exportados!");
   }
 
   function handleReset() {
-    if (!confirm('Isso apagará todos os seus dados. Deseja continuar?')) return
-    updateData(JSON.parse(JSON.stringify(DEFAULT_DATA)))
-    showToast('Dados resetados!')
+    if (!confirm("Isso apagará todos os seus dados. Deseja continuar?")) return;
+    updateData(JSON.parse(JSON.stringify(DEFAULT_DATA)));
+    showToast("Dados resetados!");
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-950 border-b border-gray-700/50 h-20">
+    <header
+      className={`sticky top-0 z-50 h-20 transition-all duration-300 border-b ${
+        scrolled
+          ? "bg-gray-950/60 backdrop-blur-md border-gray-700/30"
+          : "bg-gray-950 border-gray-700/50"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="h-16 w-auto object-contain" />
+          <img src={logo} alt="Logo" className="h-14 w-auto object-contain" />
         </div>
 
         <div className="flex items-center gap-2">
@@ -48,10 +62,9 @@ function Header({ showToast }) {
             G
           </div>
         </div>
-
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
