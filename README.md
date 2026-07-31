@@ -1,16 +1,95 @@
-# React + Vite
+# FinanceDay
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Personal finance app for tracking income, expenses, budget, investments, and financial goals.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+https://finance-day.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📸 Screenshots
 
-## React Compiler
+![Dashboard](./screenshots/dashboard.png)
+![Mobile](./screenshots/mobile.jpeg)
+![Orcamento](./screenshots/orcamento.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 📊 Dashboard with KPI Cards for income, expenses, and balance
+- 💸 Add, edit, and delete transactions
+- 📅 Filter by month and year
+- 🥧 Pie chart by category
+- 📈 Monthly bar chart comparison
+- 💰 Budget with 50/30/20 rule
+- 📂 Category configuration by bucket
+- 📉 Investment portfolio with profitability tracking
+- 🎯 Financial goals with progress and time estimate
+- 💾 Data stored locally in the browser (localStorage)
+- 📤 Export data as JSON
+- 📱 Responsive layout for mobile
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Recharts](https://recharts.org/)
+
+## ⚙️ Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/gabrielschwanke/finance-day.git
+
+# Navigate to the project folder
+cd finance-day
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+## 📁 Project Structure
+```
+
+finance-day/
+├── screenshots/
+│   ├── dashboard.png
+│   ├── mobile.png
+│   └── orcamento.png
+├── src/
+│   ├── components/          # Reusable components
+│   │   ├── Header.jsx
+│   │   ├── NavTabs.jsx
+│   │   ├── KpiCard.jsx
+│   │   ├── QuickAdd.jsx
+│   │   ├── TransactionList.jsx
+│   │   ├── EditTransactionModal.jsx
+│   │   ├── BucketsModal.jsx
+│   │   ├── MonthFilter.jsx
+│   │   ├── CustomSelect.jsx
+│   │   ├── PieChart.jsx
+│   │   ├── BarChart.jsx
+│   │   ├── Toast.jsx
+│   │   └── Footer.jsx
+│   ├── pages/               # Application pages
+│   │   ├── Receitas.jsx
+│   │   ├── Orcamento.jsx
+│   │   ├── Investimentos.jsx
+│   │   └── Metas.jsx
+│   ├── context/             # Global state
+│   │   └── DataContext.jsx
+│   ├── hooks/               # Custom hooks
+│   │   └── useToast.js
+│   ├── utils/               # Utility functions
+│   │   ├── formatters.js
+│   │   └── helpers.js
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+└── README.md
+```
+
+## 👤 Author
+
+Gabriel Pereira Schwanke — Frontend Developer
